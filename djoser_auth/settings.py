@@ -134,14 +134,14 @@ SIMPLE_JWT = {
 # Djoser Config 
 DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE':True,
-    'PASSWORD_RESET_CONFIRM_URL':'/password-reset/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL':'password-reset/{uid}/{token}',
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
     'SET_PASSWORD_RETYPE':True,
     'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND':True,
     'SEND_ACTIVATION_EMAIL':True,
     'SEND_CONFIRMATION_EMAIL':True,
     'LOGOUT_ON_PASSWORD_CHANGE¶':True,
-    'ACTIVATION_URL':'/activate/{uid}/{token}',
+    'ACTIVATION_URL':'activate/{uid}/{token}',
     'TOKEN_MODEL':None,
     'SERIALIZERS' : {
         'user_create': 'users.serializers.CustomUserSerializer',
