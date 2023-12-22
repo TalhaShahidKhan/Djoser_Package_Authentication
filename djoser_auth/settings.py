@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+from datetime import timedelta
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -118,6 +120,38 @@ USE_I18N = True
 USE_TZ = True
 
 
+# JWT 
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": False,
+    "UPDATE_LAST_LOGIN": False,
+}
+
+
+
+# Djoser Config 
+DJOSER = {
+    'USER_CREATE_PASSWORD_RETYPE':True,
+    'PASSWORD_RESET_CONFIRM_URL':'/password-reset/{uid}/{token}',
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
+    'SET_PASSWORD_RETYPE':True,
+    'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND':True,
+    'SEND_ACTIVATION_EMAIL':True,
+    'SEND_CONFIRMATION_EMAIL':True,
+    'LOGOUT_ON_PASSWORD_CHANGE¶':True,
+    'ACTIVATION_URL':'/activate/{uid}/{token}',
+    'TOKEN_MODEL':None,
+    'SERIALIZERS' : {
+        'user_create': 'users.serializers.CustomUserSerializer',
+        'user_delete': 'djoser.serializers.UserDeleteSerializer',
+        'user': 'users.serializers.CustomUserSerializer',
+    }
+}
+
+
+
 # CustomUser 
 AUTH_USER_MODEL = 'users.CustomUser'
 
@@ -146,10 +180,6 @@ REST_FRAMEWORK = {
 }
 
 
-# JWT 
-SIMPLE_JWT = {
-   'AUTH_HEADER_TYPES': ('JWT',),
-}
 
 # Cors Headers 
 CORS_ALLOWED_ORIGINS = [
